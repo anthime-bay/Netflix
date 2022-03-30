@@ -8,20 +8,31 @@
     <script src="https://use.fontawesome.com/releases/v6.0.0/js/all.js"crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="icon" href="./favicon.png">
+    <link rel="stylesheet" href="style.css">
 
     <title>Home - Netflix</title>
 
+    <style>
+            main section::-webkit-scrollbar {
+                display: none;
+            }
+            
+    </style>
+       
+
 </head>
- <body class="bg-black text-slate-100"> 
+
+
+<body class="bg-black overflow-x-hidden text-slate-100 "> 
     <header class=" bg-cover bg-gradient-to-r from-black-500 to-black-900 bg-center bg-no-repeat h-screen w-screen" >
         
-        <section class="lg:py-2 py-1 px-10 fixed top-0 w-full z-40">
+        <section id="navbar" class="lg: py-1 px-10 fixed top-0 w-full z-40 bg-black">
 
             <nav class="flex md:justify-between justify-center">
 
                 <div class="flex items-center md:justify-start w-auto">
 
-                    <img src="assets/images/Netflix-logo.png" alt="Netflix Logo" class="w-28 hover:cursor-pointer">
+                    <img src="assets/images/Netflix-logo.png" alt="Netflix Logo" class="w-24 hover:cursor-pointer">
 
                     <div class="md:flex hidden justify-between lg:ml-8 md:ml-3 lg:text-sm text-xs">
 
@@ -53,36 +64,80 @@
                 </div>
 
             </nav>
-
+            <script>
+                
+                    const elm = document.getElementById("navbar")
+                
+                    window.onscroll = () => {
+                
+                        let scrollTop = window.scrollY
+                
+                        if(scrollTop > 250) {
+                
+                            elm.classList.add("bg-black")
+                
+                        } else {
+                
+                            elm.classList.remove("bg-black")
+                
+                        }
+                
+                    }
+            </script>
         </section>
 
-        <section class="w-screen h-screen">
-            <img class="w-full h-screen object-cover" src="./assets/images/background.jpg">
-                
-            <div class="absolute bg-gradient-to-t from-transparent to-black top-0 w-full h-10 z-10"></div>
-            <div class="absolute bg-gradient-to-b from-transparent to-black bottom-0 w-full h-10"></div>
-            <div class="absolute top-40">
-                <div class="flex flex-col h-full justify-center ml-16 xl:w-2/6 lg:w-2/5 sm:w-2/4 w-3/5">
-
-                    <img src="assets/images/titre-fma.png" alt="Full Metal Alchemist" class="z-10">
-
-                        <div class="z-10 flex items-center mt-3">
-
-                        </div>
-                
-                        <p class="z-10 text-xl mt-3">
-                            While trying to bring their mother back to life through alchemy, two brothers produce a chemical reaction with devastating effects on their bodies.
-                        </p>
-                
-    
-                         <div class="z-10 mt-6 w-full">
-
-                            <button class="font-bold px-9 py-2 bg-white hover:bg-white/[.70] rounded-md text-black mr-5"><span class="mr-1"><i class="fa-solid fa-play"></i></span> Lecture</button>
-                            <button class="font-bold px-7 py-2 bg-gray-600/[.5] hover:bg-gray-500/[.4] rounded-md"><span class="mr-1"><i class="fa-solid fa-circle-info"></i></span> Plus d'info</button>
         
-                        </div>
+
+        <section class="w-screen h-screen overflow-x-hidden">
+
+            <div id="fond" class="overflow-x-hidden">
+                <img  id="imagefma" class="w-screen h-full object-cover" src="./assets/images/background.jpg">
+                <video id="bandeannonce" src="assets/videos/videoba.mp4" class="w-screen h-full hidden"></video>
+                <div  class="absolute top-40">
+                    <div class="flex flex-col h-full justify-center ml-16 xl:w-2/6 lg:w-2/5 sm:w-2/4 w-3/5">
+                        
+                        <img src="assets/images/titre-fma.png" alt="Full Metal Alchemist" class="z-10">
+
+                            <div class="z-10 flex items-center mt-3">
+
+                            </div>
+                    
+                            <p class="z-10 text-xl mt-3">
+                                En tentant de redonner vie à leur mère par alchimie, deux frères produisent une réaction chimique aux effets dévastateurs sur leurs corps.
+                            </p>
+                    
+        
+                            <div class="z-10 mt-6 w-full">
+
+                                <button class="font-bold px-9 py-2 bg-white hover:bg-white/[.70] rounded-md text-black mr-5"><span class="mr-1"><i class="fa-solid fa-play"></i></span> Lecture</button>
+                                <button class="font-bold px-7 py-2 bg-gray-600/[.5] hover:bg-gray-500/[.4] rounded-md"><span class="mr-1"><i class="fa-solid fa-circle-info"></i></span> Plus d'info</button>
+            
+                            </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="absolute bg-gradient-to-t from-transparent to-black top-0 w-screen h-10 z-10"></div>
+            <div class="absolute bg-gradient-to-b from-transparent to-black bottom-0 w-screen h-10"></div>
+            <script>
+                
+                let video = document.getElementById(`bandeannonce`);
+                let fond = document.getElementById(`fond`)
+                let imagefma = document.getElementById(`imagefma`)
+                
+                fond.addEventListener(`mouseover`, () => {
+                    imagefma.style.display ="none"
+                    video.style.display = "block"
+                    video.play();
+                });
+
+                fond.addEventListener(`mouseout`, () => {
+                    imagefma.style.display ="block"
+                    video.style.display = "none"
+                    video.pause();
+                });
+
+            </script>
     
     
         </section> 
